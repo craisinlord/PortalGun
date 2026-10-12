@@ -1,0 +1,76 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+allprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+
+    group = findProperty('maven_group') ?: 'com.craisinlord.portalgun'
+    version = findProperty('mod_version') ?: '1.0.0'
+
+    repositories {
+        mavenCentral()
+        maven { url = 'https://maven.neoforged.net/releases' }
+        maven { url = 'https://maven.fabricmc.net/' }
+        maven { url = 'https://maven.parchmentmc.org' }
+        exclusiveContent {
+            forRepository {
+                maven { name = 'GeckoLib'; url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+            }
+            filter { includeGroup('software.bernie.geckolib') }
+        }
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = 'BlameJared (JEI)'
+                    url = 'https://maven.blamejared.com'
+                }
+            }
+            filter { includeGroup('mezz.jei') }
+        }
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
+    }
+
+    java {
+        withSourcesJar()
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+    }
+}
+
+tasks.named('jar') {
+    enabled = false
+}
+
+def registerStandaloneTasks = { String moduleDirName, String taskPrefix ->
+    def standaloneDir = file(moduleDirName)
+    def wrapperName = providers.systemProperty('os.name').get().toLowerCase().contains('win')
+            ? 'gradlew.bat'
+            : 'gradlew'
+    def wrapper = new File(standaloneDir, wrapperName)
+
+    ['build', 'assemble', 'clean', 'runClient', 'runServer'].each { taskName ->
+        tasks.register("${taskPrefix}${taskName.capitalize()}", Exec) {
+            group = moduleDirName
+            description = "Runs '${taskName}' inside ${moduleDirName}"
+            workingDir = standaloneDir
+            environment 'GRADLE_USER_HOME', gradle.gradleUserHomeDir.absolutePath
+            commandLine wrapper.absolutePath, taskName
+        }
+    }
+}
+
+registerStandaloneTasks('forge-1.20.1', 'forge1201')
+registerStandaloneTasks('fabric-1.20.1', 'fabric120')
+
+
+allprojects {
+    repositories {
+        maven { url = 'https://api.modrinth.com/maven' }
+        maven { url = 'https://cursemaven.com' }
+    }
+}

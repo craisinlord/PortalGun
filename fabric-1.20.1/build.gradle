@@ -1,0 +1,64 @@
+plugins {
+    id 'net.fabricmc.fabric-loom-remap' version '1.15.5'
+}
+
+group = mod_group_id
+version = mod_version
+
+base {
+    archivesName = "${mod_id}-fabric-1.20.1"
+}
+
+repositories {
+    maven { url = 'https://maven.fabricmc.net/' }
+    mavenCentral()
+}
+
+tasks.withType(AbstractCopyTask).configureEach {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+java {
+    toolchain { languageVersion = JavaLanguageVersion.of(17) }
+    withSourcesJar()
+}
+
+sourceSets {
+    main {
+        java.srcDirs += file('../common-1.20.1/src/main/java')
+        resources.srcDirs += file('../common-1.20.1/src/main/resources')
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [
+        version: project.version,
+        minecraft_version: minecraft_version,
+        fabric_loader_version: fabric_loader_version,
+        mod_id: mod_id,
+        mod_name: mod_name,
+        mod_description: mod_description,
+        mod_authors: mod_authors,
+        mod_license: mod_license,
+        homepage_url: homepage_url,
+        logo_file: logo_file
+    ]
+    inputs.properties replaceProperties
+    filesMatching('fabric.mod.json') { expand replaceProperties }
+}
+
+
+repositories {
+    maven { url = 'https://api.modrinth.com/maven' }
+}
+
+dependencies {
+    modCompileOnly "maven.modrinth:zJpHMkdD:${immersive_portals_version_1_20_1_fabric}"
+}

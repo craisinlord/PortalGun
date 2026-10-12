@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "gui_light": "front",
+  "textures": {
+    "layer0": "portal_gun:item/portal_gun/portal_gun_item"
+  }
+}

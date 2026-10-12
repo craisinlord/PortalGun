@@ -1,0 +1,10 @@
+{
+  "type": "portal_gun:portal_gun_variant",
+  "category": "equipment",
+  "ingredients": [
+    { "item": "portal_gun:portal_gun" },
+    { "item": "minecraft:yellow_dye" },
+    { "item": "minecraft:red_dye" }
+  ],
+  "result": { "id": "portal_gun:portal_gun_p_body", "count": 1 }
+}

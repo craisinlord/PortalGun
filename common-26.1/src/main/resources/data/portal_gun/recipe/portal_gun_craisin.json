@@ -1,0 +1,13 @@
+{
+  "type": "portal_gun:portal_gun_variant",
+  "category": "equipment",
+  "ingredients": [
+    "portal_gun:portal_gun",
+    "minecraft:purple_dye",
+    "minecraft:gold_ingot"
+  ],
+  "result": {
+    "id": "portal_gun:portal_gun_craisin",
+    "count": 1
+  }
+}

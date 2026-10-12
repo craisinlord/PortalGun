@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${version}",
+  "name": "${mod_name}",
+  "description": "${mod_description}",
+  "authors": ["${mod_authors}"],
+  "license": "${mod_license}",
+  "icon": "assets/portal_gun/icon.png",
+  "environment": "*",
+  "entrypoints": {"main": ["com.craisinlord.portalgun.fabric.PortalGunFabric"], "client": ["com.craisinlord.portalgun.fabric.PortalGunFabricClient"]},
+  "breaks": {"antarchy": "*"},
+  "depends": {"fabricloader": ">=0.15.11", "minecraft": "~${minecraft_version}", "java": ">=21", "fabric-api": "*", "geckolib": "*"},
+  "mixins": ["portal_gun.mixins.json", "portal_gun-fabric.mixins.json"]
+}

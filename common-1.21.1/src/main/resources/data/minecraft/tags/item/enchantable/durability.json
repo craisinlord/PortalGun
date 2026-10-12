@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "portal_gun:portal_gun",
+    "portal_gun:portal_gun_atlas",
+    "portal_gun:portal_gun_p_body",
+    "portal_gun:portal_gun_craisin",
+    "portal_gun:portal_gun_laynce"
+  ]
+}

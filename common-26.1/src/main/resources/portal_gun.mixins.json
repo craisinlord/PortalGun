@@ -1,0 +1,44 @@
+{
+  "required": true,
+  "package": "com.craisinlord.portalgun.mixins",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AbstractArrowAccessor",
+    "FallingBlockEntityAccessor",
+    "ServerGamePacketListenerTeleportAccessor",
+    "gravity.ChunkMapAccessor",
+    "gravity.ServerEntityAccessor",
+    "gravity.TrackedEntityAccessor",
+    "PortalGunEntityCollisionMixin",
+    "PortalGunEntityInWallMixin",
+    "PortalGunItemEntityRemovalMixin",
+    "PortalGunPlayerMovePacketMixin",
+    "PortalGunProjectileHitMixin",
+    "PortalGunZombieMixin"
+  ],
+  "client": [
+    "client.BlockEntityRenderDispatcherPortalMixin",
+    "client.CameraBasisAccessor",
+    "client.CameraPortalViewAccessor",
+    "client.CameraPortalRollMixin",
+    "client.EntityRenderDispatcherPortalMixin",
+    "client.GameRendererPortalAccessor",
+    "client.GameRendererPortalViewMixin",
+    "client.LevelRendererPortalLifecycleMixin",
+    "client.LevelRendererPortalViewAreaAccessor",
+    "client.LevelRendererPortalViewAreaMixin",
+    "client.LivingEntityPortalLerpAccessor",
+    "client.LocalPlayerPortalMixin",
+    "client.LocalPlayerPortalTransitMixin",
+    "client.MinecraftMainRenderTargetAccessor",
+    "client.MinecraftPortalTransparencyMixin",
+    "client.PortalGunEntityTeleportPacketMixin",
+    "client.PortalGunZoomFovMixin",
+    "client.PortalViewChunkCacheMixin",
+    "client.ScreenEffectRendererPortalMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}

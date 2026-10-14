@@ -10,6 +10,6 @@
   "environment": "*",
   "entrypoints": {"main": ["com.craisinlord.portalgun.fabric.PortalGunFabric"], "client": ["com.craisinlord.portalgun.fabric.PortalGunFabricClient"]},
   "breaks": {"antarchy": "*"},
-  "depends": {"fabricloader": ">=0.18.4", "minecraft": "~${minecraft_version}", "java": ">=25", "fabric-api": "*", "geckolib": "*"},
+  "depends": {"anthology": ">=1.0.0", "fabricloader": ">=0.18.4", "minecraft": "~${minecraft_version}", "java": ">=25", "fabric-api": "*", "geckolib": "*"},
   "mixins": ["portal_gun.mixins.json", "portal_gun-fabric.mixins.json"]
 }

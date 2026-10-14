@@ -1,5 +1,5 @@
 plugins {
-    id 'net.neoforged.moddev' version '2.0.141'
+    id 'net.neoforged.moddev' version '2.0.148'
 }
 
 group = rootProject.group
@@ -71,5 +71,6 @@ configurations {
 
 dependencies {
     implementation "curse.maven:geckolib-${geckolib_curseforge_id}:${geckolib_curseforge_file_id_neoforge_26_2}"
+    implementation files(rootProject.file("anthology_jars/anthology-${anthology_version}+26.2-neoforge.jar"))
 }
 

@@ -1,0 +1,76 @@
+plugins {
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+
+group = rootProject.group
+version = rootProject.version
+
+base {
+    archivesName = "${mod_id}-neoforge-26.3"
+}
+
+neoForge {
+    version = neoforge_version_26_3
+    mods {
+        create(mod_id) {
+            sourceSet sourceSets.main
+        }
+    }
+    runs {
+        client { client() }
+        server { server() }
+    }
+}
+
+java {
+    toolchain { languageVersion = JavaLanguageVersion.of(25) }
+    withSourcesJar()
+}
+
+tasks.withType(ProcessResources).configureEach {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    var replaceProperties = [
+        version        : project.version,
+        mod_id         : mod_id,
+        mod_name       : mod_name,
+        mod_description: mod_description,
+        mod_authors    : mod_authors,
+        mod_license    : mod_license
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand replaceProperties
+    }
+}
+
+tasks.withType(Copy).configureEach {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.withType(Jar).configureEach {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs project(':common-26.3').sourceSets.main.java.srcDirs
+        }
+        resources {
+            srcDir project(':common-26.3').sourceSets.main.resources.srcDirs
+        }
+    }
+}
+
+configurations {
+    localRuntime
+    runtimeClasspath.extendsFrom localRuntime
+}
+
+dependencies {
+    implementation files(rootProject.file("anthology_jars/anthology-${anthology_version}+26.3-neoforge.jar"))
+    implementation "maven.modrinth:geckolib:${geckolib_modrinth_version_neoforge_26_3}"
+}
+

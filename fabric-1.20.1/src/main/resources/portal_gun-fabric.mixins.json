@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.craisinlord.portalgun.fabric.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [],
+  "client": [
+    "client.CrossbowArmPoseMixin",
+    "client.SeparateLargeItemGuiLightingMixin",
+    "client.SeparateLargeItemModelsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}

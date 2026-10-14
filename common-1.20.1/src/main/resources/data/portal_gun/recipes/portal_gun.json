@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": ["IOI", "ENE", "IOI"],
+  "key": {
+    "I": { "item": "minecraft:iron_ingot" },
+    "O": { "item": "minecraft:obsidian" },
+    "E": { "item": "minecraft:ender_pearl" },
+    "N": { "item": "minecraft:nether_star" }
+  },
+  "result": { "item": "portal_gun:portal_gun", "count": 1 }
+}

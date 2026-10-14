@@ -23,6 +23,13 @@ description='''${mod_description}'''
     versionRange="[26.2,)"
 
 [[dependencies.${mod_id}]]
+    modId="anthology"
+    type="required"
+    versionRange="[1.0.0,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
     modId="geckolib"
     type="required"
     versionRange="[5.5,)"

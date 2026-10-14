@@ -1,0 +1,6 @@
+{
+  "parent": "portal_gun:item/portal_gun_held_geo",
+  "textures": {
+    "particle": "portal_gun:item/portal_gun/portal_gun_p_body_item"
+  }
+}

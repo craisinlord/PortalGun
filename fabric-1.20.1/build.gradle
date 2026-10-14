@@ -2,6 +2,14 @@ plugins {
     id 'net.fabricmc.fabric-loom-remap' version '1.15.5'
 }
 
+def rootProperties = new Properties()
+file('../gradle.properties').withInputStream { rootProperties.load(it) }
+rootProperties.each { key, value ->
+    if (!project.hasProperty(key)) {
+        project.ext.set(key, value)
+    }
+}
+
 group = mod_group_id
 version = mod_version
 
@@ -12,6 +20,19 @@ base {
 repositories {
     maven { url = 'https://maven.fabricmc.net/' }
     mavenCentral()
+    maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'GeckoLib'
+                url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+            }
+        }
+        filter {
+            includeGroup('software.bernie.geckolib')
+            includeGroup('com.eliotlash.mclib')
+        }
+    }
 }
 
 tasks.withType(AbstractCopyTask).configureEach {
@@ -35,6 +56,16 @@ dependencies {
     mappings loom.officialMojangMappings()
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+    modImplementation "software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}"
+    modImplementation files("../anthology_jars/anthology-${anthology_version}+1.20.1-fabric.jar")
+    annotationProcessor "org.spongepowered:mixin:0.8.7:processor"
+}
+
+loom {
+    mixin {
+        useLegacyMixinAp = true
+        defaultRefmapName = 'portal_gun.refmap.json'
+    }
 }
 
 tasks.named('processResources', ProcessResources).configure {
@@ -42,6 +73,8 @@ tasks.named('processResources', ProcessResources).configure {
         version: project.version,
         minecraft_version: minecraft_version,
         fabric_loader_version: fabric_loader_version,
+        anthology_version: anthology_version,
+        geckolib_version: geckolib_version,
         mod_id: mod_id,
         mod_name: mod_name,
         mod_description: mod_description,
@@ -52,13 +85,13 @@ tasks.named('processResources', ProcessResources).configure {
     ]
     inputs.properties replaceProperties
     filesMatching('fabric.mod.json') { expand replaceProperties }
-}
 
-
-repositories {
-    maven { url = 'https://api.modrinth.com/maven' }
-}
-
-dependencies {
-    modCompileOnly "maven.modrinth:zJpHMkdD:${immersive_portals_version_1_20_1_fabric}"
+    doLast {
+        ['portal_gun.mixins.json', 'portal_gun-fabric.mixins.json'].each { configName ->
+            def mixinConfig = new File(destinationDir, configName)
+            def json = new groovy.json.JsonSlurper().parse(mixinConfig)
+            json.put('refmap', 'portal_gun.refmap.json')
+            mixinConfig.text = groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(json))
+        }
+    }
 }

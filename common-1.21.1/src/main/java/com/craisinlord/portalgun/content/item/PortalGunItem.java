@@ -7,7 +7,7 @@ import com.craisinlord.portalgun.content.block.entity.PortalGunPortalFaceRecord;
 import com.craisinlord.portalgun.content.block.entity.PortalGunPortalCellAccess;
 import com.craisinlord.portalgun.content.client.model.ResourceBackedGeoItemModel;
 import com.craisinlord.portalgun.content.client.renderer.AnimatedHeldItemRenderer;
-import com.craisinlord.portalgun.content.gravity.PortalGunGravityApi;
+import com.craisinlord.anthology.gravity.GravityApi;
 import com.craisinlord.portalgun.content.network.PortalGunPrimaryPayload;
 import com.craisinlord.portalgun.content.portalgun.PortalGunPlacement;
 import com.craisinlord.portalgun.content.portalgun.PortalGunMoonMath;
@@ -390,9 +390,9 @@ public class PortalGunItem extends Item implements GeoItem {
 
     private Vec3 worldLook(LivingEntity entity) {
         Vec3 look = entity.getLookAngle();
-        return PortalGunGravityApi.isGravityInverted(entity)
-                ? com.craisinlord.portalgun.content.gravity.PortalGunGravityRotationUtil.vecPlayerToWorld(
-                        look, PortalGunGravityApi.getGravityDirection(entity))
+        return GravityApi.isGravityInverted(entity)
+                ? com.craisinlord.anthology.gravity.GravityRotationUtil.vecPlayerToWorld(
+                        look, GravityApi.getGravityDirection(entity))
                 : look;
     }
 

@@ -31,6 +31,7 @@ dependencies {
     implementation "net.fabricmc:fabric-loader:${fabric_loader_version_26_2}"
     implementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version_26_2}"
     implementation "curse.maven:geckolib-${geckolib_curseforge_id}:${geckolib_curseforge_file_id_fabric_26_2}"
+    implementation files("$rootDir/anthology_jars/anthology-${anthology_version}+26.2-fabric.jar")
 }
 
 tasks.named('processResources', ProcessResources).configure {

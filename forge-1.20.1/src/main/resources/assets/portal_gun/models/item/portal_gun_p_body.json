@@ -1,0 +1,18 @@
+{
+  "loader": "forge:separate_transforms",
+  "gui_light": "front",
+  "base": {
+    "parent": "portal_gun:item/portal_gun_held_geo"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "portal_gun:item/portal_gun_p_body_gui"
+    },
+    "ground": {
+      "parent": "portal_gun:item/portal_gun_p_body_gui"
+    },
+    "fixed": {
+      "parent": "portal_gun:item/portal_gun_p_body_gui"
+    }
+  }
+}

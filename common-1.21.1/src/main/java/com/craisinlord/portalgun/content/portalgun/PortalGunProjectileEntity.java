@@ -1,9 +1,9 @@
 package com.craisinlord.portalgun.content.portalgun;
 
 import com.craisinlord.portalgun.content.item.PortalGunItem;
-import com.craisinlord.portalgun.content.gravity.PortalGunGravityApi;
-import com.craisinlord.portalgun.content.gravity.PortalGunGravityDirection;
-import com.craisinlord.portalgun.content.gravity.PortalGunGravityTransition;
+import com.craisinlord.anthology.gravity.GravityApi;
+import com.craisinlord.anthology.gravity.GravityDirection;
+import com.craisinlord.anthology.gravity.GravityTransition;
 import com.craisinlord.portalgun.config.PortalGunSettings;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -126,7 +126,7 @@ public class PortalGunProjectileEntity extends ThrowableItemProjectile {
     }
 
     public void configure(PortalGunPortalEntity.PortalSide side, UUID gunId, ItemStack gunStack) {
-        PortalGunGravityApi.setAirborneGravityDirection(this, PortalGunGravityDirection.DOWN, false, PortalGunGravityTransition.INSTANT);
+        GravityApi.setAirborneGravityDirection(this, GravityDirection.DOWN, false, GravityTransition.INSTANT);
         this.entityData.set(SIDE, side.ordinal());
         this.gunId = gunId;
         this.setItem(gunStack.copyWithCount(1));

@@ -1,5 +1,5 @@
 plugins {
-    id 'net.neoforged.moddev' version '2.0.141'
+    id 'net.neoforged.moddev' version '2.0.148'
 }
 
 group = rootProject.group
@@ -70,5 +70,7 @@ configurations {
 }
 
 dependencies {
+    compileOnly(files(rootProject.file("anthology_jars/anthology-${anthology_version}+1.21.1-neoforge.jar")))
+    runtimeOnly(files(rootProject.file("anthology_jars/anthology-${anthology_version}+1.21.1-neoforge.jar")))
     implementation "software.bernie.geckolib:geckolib-neoforge-1.21.1:${geckolib_version_1_21_1}"
 }

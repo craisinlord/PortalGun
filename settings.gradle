@@ -23,5 +23,8 @@ include 'neoforge-26.1'
 include 'common-26.2'
 include 'fabric-26.2'
 include 'neoforge-26.2'
+include 'common-26.3'
+include 'fabric-26.3'
+include 'neoforge-26.3'
 
 

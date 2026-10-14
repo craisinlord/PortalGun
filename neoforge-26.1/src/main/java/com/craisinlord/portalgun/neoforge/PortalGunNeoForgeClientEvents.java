@@ -2,7 +2,6 @@ package com.craisinlord.portalgun.neoforge;
 
 import com.craisinlord.portalgun.PortalGun;
 import com.craisinlord.portalgun.content.client.PortalGunResetClientState;
-import com.craisinlord.portalgun.content.client.PortalGunRollClientState;
 import com.craisinlord.portalgun.content.client.PortalGunZoomClientState;
 import com.craisinlord.portalgun.content.item.PortalGunItem;
 import com.craisinlord.portalgun.content.network.PortalGunMoonAimPayload;
@@ -26,7 +25,6 @@ public final class PortalGunNeoForgeClientEvents {
         boolean hasGun = mc.player != null && (mc.player.getMainHandItem().getItem() instanceof PortalGunItem || mc.player.getOffhandItem().getItem() instanceof PortalGunItem);
         boolean input = mc.screen == null;
         PortalGunZoomClientState.tick(mc, hasGun, PortalGunNeoForgeClientSetup.ZOOM.consumeClick() && input);
-        PortalGunRollClientState.tick(mc);
         boolean resetting = PortalGunResetClientState.tick(mc, hasGun && input,
                 PortalGunNeoForgeClientSetup.RESET.isDown() || PortalGunNeoForgeClientSetup.RESET.consumeClick(), payload -> ClientPacketDistributor.sendToServer(payload));
         if (mc.player == null || mc.level == null || !input) { lastAttackDown = false; return; }

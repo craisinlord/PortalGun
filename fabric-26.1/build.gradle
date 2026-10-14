@@ -31,6 +31,7 @@ dependencies {
     implementation "net.fabricmc:fabric-loader:${fabric_loader_version_26_1}"
     implementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version_26_1}"
     implementation "maven.modrinth:geckolib:${geckolib_modrinth_version_fabric_26_1}"
+    implementation files("$rootDir/anthology_jars/anthology-${anthology_version}+26.1-fabric.jar")
 }
 
 tasks.named('processResources', ProcessResources).configure {

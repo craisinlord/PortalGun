@@ -1,5 +1,7 @@
 package com.craisinlord.portalgun.content.client;
 
+import com.craisinlord.anthology.portal.PortalEntity;
+import com.craisinlord.anthology.portal.PortalRegistry;
 import com.craisinlord.portalgun.content.item.PortalGunItem;
 import com.craisinlord.portalgun.content.network.PortalGunIndicatorPayload;
 import com.craisinlord.portalgun.content.portalgun.PortalGunPortalEntity;
@@ -74,8 +76,8 @@ public final class PortalGunCrosshairRenderer {
         long gameTime = level.getGameTime();
         if (cachedLevel != level || cachedGameTime != gameTime || !gunId.equals(cachedGunId)) {
             Set<PortalGunPortalEntity.PortalSide> portals = EnumSet.noneOf(PortalGunPortalEntity.PortalSide.class);
-            for (PortalGunPortalEntity portal : com.craisinlord.portalgun.content.portalgun.PortalGunPortalRegistry.all(level)) {
-                if (portal.isAlive() && gunId.equals(portal.getGunId())) {
+            for (PortalEntity entry : PortalRegistry.all(level)) {
+                if (entry instanceof PortalGunPortalEntity portal && portal.isAlive() && gunId.equals(portal.getGunId())) {
                     portals.add(portal.getPortalSide());
                 }
             }

@@ -1,10 +1,10 @@
 package com.craisinlord.portalgun.neoforge;
 
 import com.craisinlord.portalgun.PortalGun;
+import com.craisinlord.portalgun.content.client.PortalGunAnthologyClientHooks;
 import com.craisinlord.portalgun.content.client.PortalGunCrosshairRenderer;
 import com.craisinlord.portalgun.content.client.PortalGunIndicatorClientState;
 import com.craisinlord.portalgun.content.client.renderer.PortalGunPortalRenderer;
-import com.craisinlord.portalgun.content.client.renderer.PortalGunPortalViewRenderer;
 import com.craisinlord.portalgun.content.client.renderer.PortalGunProjectileRenderer;
 import com.craisinlord.portalgun.content.network.PortalGunMoonAimPayload;
 import com.craisinlord.portalgun.content.portalgun.PortalGunMoonAimSync;
@@ -23,7 +23,6 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
-import net.neoforged.neoforge.client.event.RegisterRenderPipelinesEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
@@ -53,12 +52,8 @@ public final class PortalGunNeoForgeClientSetup {
     }
 
     @SubscribeEvent
-    public static void registerRenderPipelines(RegisterRenderPipelinesEvent event) {
-        PortalGunPortalViewRenderer.pipelines().forEach(event::registerPipeline);
-    }
-
-    @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
+        PortalGunAnthologyClientHooks.register();
         PortalGunIndicatorClientState.setRequestSender(payload -> ClientPacketDistributor.sendToServer(payload));
         PortalGunMoonAimSync.setClientReporter(() -> ClientPacketDistributor.sendToServer(new PortalGunMoonAimPayload(false, false)));
     }

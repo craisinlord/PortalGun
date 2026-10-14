@@ -4,8 +4,7 @@ import com.mojang.blaze3d.platform.InputConstants;
 import com.craisinlord.portalgun.content.client.renderer.PortalGunPortalRenderer;
 import com.craisinlord.portalgun.content.client.renderer.PortalGunProjectileRenderer;
 import com.craisinlord.portalgun.PortalGun;
-import com.craisinlord.portalgun.content.client.renderer.PortalGunPortalViewRenderer;
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import com.craisinlord.portalgun.content.client.PortalGunAnthologyClientHooks;
 import com.craisinlord.portalgun.content.client.PortalGunCrosshairRenderer;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.model.HumanoidModel;
@@ -20,9 +19,7 @@ import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import software.bernie.geckolib.animatable.client.GeoRenderProvider;
-import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.client.event.RegisterShadersEvent;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
@@ -39,17 +36,6 @@ public final class PortalGunNeoForgeClientSetup {
     public static final KeyMapping ZOOM = new KeyMapping("key.portal_gun.zoom", KeyConflictContext.IN_GAME, InputConstants.Type.MOUSE, InputConstants.MOUSE_BUTTON_MIDDLE, "key.categories.portal_gun");
     public static final KeyMapping RESET = new KeyMapping("key.portal_gun.reset", KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, InputConstants.KEY_R, "key.categories.portal_gun");
     private PortalGunNeoForgeClientSetup() { }
-    @SubscribeEvent
-    public static void registerPortalViewShader(RegisterShadersEvent event) {
-        PortalGunPortalViewRenderer.clearPortalViewShader();
-        try {
-            event.registerShader(new ShaderInstance(event.getResourceProvider(),
-                    ResourceLocation.fromNamespaceAndPath(PortalGun.MODID, "portal_view"), DefaultVertexFormat.POSITION_TEX),
-                    PortalGunPortalViewRenderer::setPortalViewShader);
-        } catch (java.io.IOException | RuntimeException exception) {
-            PortalGun.LOGGER.error("Failed to register portal view shader", exception);
-        }
-    }
     @SubscribeEvent public static void registerKeyBindings(RegisterKeyMappingsEvent event) { event.register(ZOOM); event.register(RESET); }
     @SubscribeEvent public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(PortalGunNeoForgeContent.PORTAL_ENTITY.get(), PortalGunPortalRenderer::new);
@@ -58,6 +44,7 @@ public final class PortalGunNeoForgeClientSetup {
 
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
+        PortalGunAnthologyClientHooks.register();
         PortalGunIndicatorClientState.setRequestSender(PacketDistributor::sendToServer);
         PortalGunMoonAimSync.setClientReporter(() -> PacketDistributor.sendToServer(new PortalGunMoonAimPayload(false, false)));
     }

@@ -1,6 +1,7 @@
 package com.craisinlord.portalgun.fabric;
 
 import com.craisinlord.portalgun.registry.PortalGunContent;
+import com.craisinlord.portalgun.content.PortalGunAnthologyHooks;
 import com.craisinlord.portalgun.content.command.PortalGunCommand;
 import com.craisinlord.portalgun.content.portalgun.PortalGunProjectileEntity;
 import com.craisinlord.portalgun.content.portalgun.PortalGunResetManager;
@@ -20,6 +21,7 @@ public final class PortalGunFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         PortalGunContent.register();
+        PortalGunAnthologyHooks.register();
         PortalGunFabricNetworking.register();
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> PortalGunCommand.register(dispatcher));
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> PortalGunProjectileEntity.releaseAllProjectileTickets());

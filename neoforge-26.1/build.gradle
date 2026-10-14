@@ -1,5 +1,5 @@
 plugins {
-    id 'net.neoforged.moddev' version '2.0.141'
+    id 'net.neoforged.moddev' version '2.0.148'
 }
 
 group = rootProject.group
@@ -71,5 +71,6 @@ configurations {
 
 dependencies {
     implementation "maven.modrinth:geckolib:${geckolib_modrinth_version_neoforge_26_1}"
+    implementation files(rootProject.file("anthology_jars/anthology-${anthology_version}+26.1-neoforge.jar"))
 }
 

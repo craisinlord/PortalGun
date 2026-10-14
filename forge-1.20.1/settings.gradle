@@ -3,8 +3,8 @@ pluginManagement {
         gradlePluginPortal()
         maven { url = 'https://maven.minecraftforge.net' }
         maven { url = 'https://maven.parchmentmc.org' }
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
     }
 }
 
-rootProject.name = 'miners-dream-forge-1.20.1'
-
+rootProject.name = 'portal-gun-forge-1.20.1'

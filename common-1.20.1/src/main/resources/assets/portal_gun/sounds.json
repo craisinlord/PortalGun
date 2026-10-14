@@ -1,0 +1,113 @@
+{
+  "portal_gun_fire_blue": {
+    "subtitle": "subtitles.portal_gun.portal_gun_fire_blue",
+    "sounds": [
+      {
+        "name": "portal_gun:portal_aperture/portal_gun_fire_primary_1"
+      },
+      {
+        "name": "portal_gun:portal_aperture/portal_gun_fire_primary_2"
+      },
+      {
+        "name": "portal_gun:portal_aperture/portal_gun_fire_primary_3"
+      }
+    ]
+  },
+  "portal_gun_fire_orange": {
+    "subtitle": "subtitles.portal_gun.portal_gun_fire_orange",
+    "sounds": [
+      {
+        "name": "portal_gun:portal_aperture/portal_gun_fire_secondary_1"
+      },
+      {
+        "name": "portal_gun:portal_aperture/portal_gun_fire_secondary_2"
+      },
+      {
+        "name": "portal_gun:portal_aperture/portal_gun_fire_secondary_3"
+      }
+    ]
+  },
+  "portal_gun_invalid_surface": {
+    "subtitle": "subtitles.portal_gun.portal_gun_invalid_surface",
+    "sounds": [
+      {
+        "name": "portal_gun:portal_aperture/portal_invalid_surface_1"
+      },
+      {
+        "name": "portal_gun:portal_aperture/portal_invalid_surface_2"
+      },
+      {
+        "name": "portal_gun:portal_aperture/portal_invalid_surface_3"
+      },
+      {
+        "name": "portal_gun:portal_aperture/portal_invalid_surface_4"
+      }
+    ]
+  },
+  "portal_open_blue": {
+    "subtitle": "subtitles.portal_gun.portal_open_blue",
+    "sounds": [
+      {
+        "name": "portal_gun:portal_aperture/portal_open_primary_1"
+      }
+    ]
+  },
+  "portal_open_orange": {
+    "subtitle": "subtitles.portal_gun.portal_open_orange",
+    "sounds": [
+      {
+        "name": "portal_gun:portal_aperture/portal_open_secondary_1"
+      },
+      {
+        "name": "portal_gun:portal_aperture/portal_open_secondary_2"
+      }
+    ]
+  },
+  "portal_fizzle": {
+    "subtitle": "subtitles.portal_gun.portal_fizzle",
+    "sounds": [
+      {
+        "name": "portal_gun:portal_aperture/portal_fizzle_1"
+      },
+      {
+        "name": "portal_gun:portal_aperture/portal_fizzle_2"
+      }
+    ]
+  },
+  "portal_ambient": {
+    "subtitle": "subtitles.portal_gun.portal_ambient",
+    "sounds": [
+      {
+        "name": "portal_gun:portal_aperture/portal_ambient"
+      }
+    ]
+  },
+  "portal_enter": {
+    "subtitle": "subtitles.portal_gun.portal_enter",
+    "sounds": [
+      {
+        "name": "portal_gun:portal_aperture/portal_enter_1"
+      },
+      {
+        "name": "portal_gun:portal_aperture/portal_enter_2"
+      },
+      {
+        "name": "portal_gun:portal_aperture/portal_enter_3"
+      }
+    ]
+  },
+  "portal_exit": {
+    "subtitle": "subtitles.portal_gun.portal_exit",
+    "sounds": [
+      {
+        "name": "portal_gun:portal_aperture/portal_enter_1"
+      },
+      {
+        "name": "portal_gun:portal_aperture/portal_enter_2"
+      },
+      {
+        "name": "portal_gun:portal_aperture/portal_enter_3"
+      }
+    ]
+  }
+}

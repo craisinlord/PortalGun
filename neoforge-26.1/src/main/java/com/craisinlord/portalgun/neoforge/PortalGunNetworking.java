@@ -15,8 +15,6 @@ public final class PortalGunNetworking {
             if (!(ctx.player() instanceof ServerPlayer player)) return;
             var stack = payload.offhand() ? player.getOffhandItem() : player.getMainHandItem();
             if (stack.getItem() instanceof PortalGunItem item) item.firePrimary(player.level(), player, stack, payload.offhand());
-        })).playToServer(PortalGunTransitPayload.TYPE, PortalGunTransitPayload.STREAM_CODEC, (payload, ctx) -> ctx.enqueueWork(() -> {
-            if (ctx.player() instanceof ServerPlayer player) PortalGunTransitHandler.handle(player, payload);
         })).playToServer(PortalGunIndicatorRequestPayload.TYPE, PortalGunIndicatorRequestPayload.STREAM_CODEC, (payload, ctx) -> ctx.enqueueWork(() -> {
             if (ctx.player() instanceof ServerPlayer player) PortalGunIndicatorSync.handleRequest(player, payload);
         })).playToServer(PortalGunResetPayload.TYPE, PortalGunResetPayload.STREAM_CODEC, (payload, ctx) -> ctx.enqueueWork(() -> {

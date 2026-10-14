@@ -1,6 +1,7 @@
 package com.craisinlord.portalgun.neoforge;
 
 import com.craisinlord.portalgun.PortalGun;
+import com.craisinlord.portalgun.content.PortalGunAnthologyHooks;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -9,6 +10,7 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 @Mod(PortalGun.MODID)
 public final class PortalGunNeoForge {
     public PortalGunNeoForge(IEventBus modBus) {
+        PortalGunAnthologyHooks.register();
         PortalGunNeoForgeContent.BLOCKS.register(modBus);
         PortalGunNeoForgeContent.ITEMS.register(modBus);
         PortalGunNeoForgeContent.ENTITIES.register(modBus);

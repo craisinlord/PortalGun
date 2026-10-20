@@ -74,3 +74,16 @@ dependencies {
     implementation "maven.modrinth:geckolib:${geckolib_modrinth_version_neoforge_26_3}"
 }
 
+
+
+configurations {
+    sodiumRuntime
+}
+
+neoForge.runs.named('client') {
+    additionalRuntimeClasspathConfiguration.extendsFrom(configurations.sodiumRuntime)
+}
+
+dependencies {
+    sodiumRuntime files(rootProject.file('libs/sodium-neoforge-0.9.3-alpha.1+mc26.3.jar'))
+}

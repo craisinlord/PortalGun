@@ -36,6 +36,7 @@ repositories {
     }
     flatDir {
         dir file('../anthology_jars')
+        dir file('../libs')
     }
 }
 
@@ -122,3 +123,8 @@ tasks.named('processResources', ProcessResources).configure {
 }
 
 tasks.named('jar', Jar).configure { finalizedBy 'reobfJar' }
+
+
+dependencies {
+    runtimeOnly fg.deobf('local:embeddium:0.3.31+mc1.20.1')
+}

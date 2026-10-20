@@ -5,6 +5,7 @@ import com.craisinlord.anthology.portal.PortalRegistry;
 import com.craisinlord.portalgun.content.item.PortalGunItem;
 import com.craisinlord.portalgun.content.network.PortalGunIndicatorPayload;
 import com.craisinlord.portalgun.content.portalgun.PortalGunPortalEntity;
+import java.lang.ref.WeakReference;
 import java.util.EnumSet;
 import java.util.Set;
 import java.util.UUID;
@@ -22,7 +23,8 @@ public final class PortalGunCrosshairRenderer {
     private static final int HALF_WIDTH = 17;
     private static final float MISSING_BRIGHTNESS = 0.3F;
     private static final float MISSING_ALPHA = 0.75F;
-    private static ClientLevel cachedLevel;
+    // Weak so a dimension change or logout doesn't pin the old client world in memory.
+    private static WeakReference<ClientLevel> cachedLevel = new WeakReference<>(null);
     private static long cachedGameTime = Long.MIN_VALUE;
     private static UUID cachedGunId;
     private static Set<PortalGunPortalEntity.PortalSide> cachedPortals = Set.of();
@@ -74,14 +76,14 @@ public final class PortalGunCrosshairRenderer {
         }
         ClientLevel level = minecraft.level;
         long gameTime = level.getGameTime();
-        if (cachedLevel != level || cachedGameTime != gameTime || !gunId.equals(cachedGunId)) {
+        if (cachedLevel.get() != level || cachedGameTime != gameTime || !gunId.equals(cachedGunId)) {
             Set<PortalGunPortalEntity.PortalSide> portals = EnumSet.noneOf(PortalGunPortalEntity.PortalSide.class);
             for (PortalEntity entry : PortalRegistry.all(level)) {
                 if (entry instanceof PortalGunPortalEntity portal && portal.isAlive() && gunId.equals(portal.getGunId())) {
                     portals.add(portal.getPortalSide());
                 }
             }
-            cachedLevel = level;
+            cachedLevel = new WeakReference<>(level);
             cachedGameTime = gameTime;
             cachedGunId = gunId;
             cachedPortals = Set.copyOf(portals);

@@ -74,3 +74,16 @@ dependencies {
     runtimeOnly(files(rootProject.file("anthology_jars/anthology-${anthology_version}+1.21.1-neoforge.jar")))
     implementation "software.bernie.geckolib:geckolib-neoforge-1.21.1:${geckolib_version_1_21_1}"
 }
+
+
+configurations {
+    sodiumRuntime
+}
+
+neoForge.runs.named('client') {
+    additionalRuntimeClasspathConfiguration.extendsFrom(configurations.sodiumRuntime)
+}
+
+dependencies {
+    sodiumRuntime files(rootProject.file('libs/sodium-neoforge-0.8.13+mc1.21.1.jar'))
+}

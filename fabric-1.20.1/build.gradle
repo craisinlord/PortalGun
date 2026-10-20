@@ -95,3 +95,8 @@ tasks.named('processResources', ProcessResources).configure {
         }
     }
 }
+
+
+dependencies {
+    modRuntimeOnly files('../libs/sodium-fabric-0.5.13+mc1.20.1.jar')
+}

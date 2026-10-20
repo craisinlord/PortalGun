@@ -74,3 +74,16 @@ dependencies {
     implementation files(rootProject.file("anthology_jars/anthology-${anthology_version}+26.1-neoforge.jar"))
 }
 
+
+
+configurations {
+    sodiumRuntime
+}
+
+neoForge.runs.named('client') {
+    additionalRuntimeClasspathConfiguration.extendsFrom(configurations.sodiumRuntime)
+}
+
+dependencies {
+    sodiumRuntime files(rootProject.file('libs/sodium-neoforge-0.9.2+mc26.1.2.jar'))
+}
